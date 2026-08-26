@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 export default function HeroDecorations() {
   return (
-    <>
+    <div className="absolute inset-0 w-full h-full overflow-hidden select-none pointer-events-none z-[0]">
       {/* London Skyline Watermark Texture (z-index 0) */}
       <div 
-        className="absolute inset-0 w-full h-full saturate-[0.2] mix-blend-mode-multiply select-none pointer-events-none z-[0] animate-fade-in"
+        className="absolute inset-0 w-full h-full saturate-[0.2] mix-blend-mode-multiply animate-fade-in"
         style={{ opacity: 0.12 }}
       >
         <Image
@@ -21,6 +21,6 @@ export default function HeroDecorations() {
           style={{ opacity: 0.12 }}
         />
       </div>
-    </>
+    </div>
   );
 }

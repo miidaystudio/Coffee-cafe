@@ -11,18 +11,38 @@ export default function CraftAndStory() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // 1. Entrance animation for the image column
-    gsap.from('.gsap-story-col-left', {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-      opacity: 0,
-      y: 40,
-      duration: 1.2,
-      ease: 'power3.out',
-    });
+    // 1. Scroll-driven Coffee Cup transition from Hero to Story target frame
+    const cup = document.querySelector('#hero-coffee-cup') as HTMLElement;
+    const target = document.querySelector('#story-cup-target') as HTMLElement;
+
+    if (cup && target) {
+      gsap.to(cup, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 95%',
+          end: 'top 25%',
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+        x: () => {
+          const cupRect = cup.getBoundingClientRect();
+          const targetRect = target.getBoundingClientRect();
+          const cupCenterX = cupRect.left + cupRect.width / 2;
+          const targetCenterX = targetRect.left + targetRect.width / 2;
+          return targetCenterX - cupCenterX;
+        },
+        y: () => {
+          const cupRect = cup.getBoundingClientRect();
+          const targetRect = target.getBoundingClientRect();
+          const cupCenterY = cupRect.top + cupRect.height / 2;
+          const targetCenterY = targetRect.top + targetRect.height / 2;
+          return targetCenterY - cupCenterY - 28;
+        },
+        scale: 1.05,
+        rotate: 0,
+        ease: 'none',
+      });
+    }
 
     // 2. Entrance animation for the story content column
     gsap.from('.gsap-story-col-right', {
@@ -51,18 +71,6 @@ export default function CraftAndStory() {
       duration: 0.8,
       ease: 'power2.out',
     });
-
-    // 4. Parallax effect on the image
-    gsap.to('.gsap-story-img', {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-      },
-      yPercent: 12,
-      ease: 'none',
-    });
   }, { scope: containerRef });
 
   return (
@@ -87,21 +95,46 @@ export default function CraftAndStory() {
       {/* Editorial Content Container */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 w-full max-w-[1140px] mx-auto items-center relative z-10">
         
-        {/* Left Column — Barista/Craft Image with Curator Tag */}
+        {/* Left Column — Coffee Cup Destination Target Frame */}
         <div className="gsap-story-col-left lg:col-span-5 w-full flex items-center justify-center lg:justify-start gap-4">
-          {/* Vertical caption aligned next to image */}
+          {/* Vertical caption aligned next to container */}
           <div className="hidden sm:block text-[8px] tracking-[0.3em] text-brand-cream/30 font-sans uppercase [writing-mode:vertical-lr] rotate-180 select-none pb-4">
-            IMAGE REF. LC-049 // CRAFT IN FOCUS
+            ITEM REF. LC-001 // SIGNATURE BREW
           </div>
 
-          <div className="w-full max-w-[360px] lg:max-w-[380px] aspect-[4/5] relative overflow-hidden rounded-[20px] sm:rounded-[28px] shadow-2xl border border-brand-cream/5 group">
-            <img
-              src="/images/coffee_roast_craft.jpg"
-              alt="Handcrafted Coffee Brewing Craft"
-              className="gsap-story-img w-full h-full object-cover scale-[1.12] opacity-90 group-hover:opacity-100 group-hover:scale-[1.14] transition-opacity duration-1000 ease-custom"
-            />
-            {/* Soft ambient vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-outer/70 via-transparent to-transparent pointer-events-none" />
+          {/* Destination Target Card Frame for Coffee Cup */}
+          <div 
+            id="story-cup-target"
+            className="w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] aspect-[4/5] relative rounded-[24px] sm:rounded-[32px] bg-gradient-to-b from-[#132620]/90 via-brand-outer to-brand-outer border border-brand-gold/25 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col items-center justify-between p-6 sm:p-7 group z-10"
+          >
+            {/* Soft ambient radial highlight */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-gold/20 via-transparent to-transparent pointer-events-none" />
+
+            {/* Subtle Architectural Crest / Seal Stamp Watermark */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full border border-brand-gold/15 pointer-events-none flex items-center justify-center">
+              <div className="w-32 h-32 rounded-full border border-brand-gold/10 flex items-center justify-center">
+                <span className="text-[7px] tracking-[0.3em] font-sans text-brand-gold/20 uppercase font-bold">EST. 2026</span>
+              </div>
+            </div>
+
+            {/* Top Header Tag inside Card */}
+            <div className="w-full flex items-center justify-between z-10">
+              <span className="text-[8px] tracking-[0.25em] font-sans font-semibold text-brand-gold/80 uppercase">LONDON ROASTERY</span>
+              <span className="text-[8px] tracking-[0.2em] font-sans font-bold text-brand-cream/40 uppercase">NO. 01</span>
+            </div>
+
+            {/* Center area reserved for landing coffee cup */}
+            <div className="w-full h-full flex-1" />
+
+            {/* Bottom Label Tag */}
+            <div className="w-full text-center z-10 pt-3 border-t border-brand-gold/15">
+              <span className="text-[10px] sm:text-[11px] tracking-[0.25em] font-sans font-bold text-brand-gold uppercase block mb-0.5">
+                CARAMEL ICED LATTE
+              </span>
+              <span className="font-serif italic text-brand-cream/70 text-xs sm:text-sm">
+                Handcrafted with London Soul
+              </span>
+            </div>
           </div>
         </div>
 
@@ -109,16 +142,15 @@ export default function CraftAndStory() {
         <div className="gsap-story-col-right lg:col-span-7 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
           {/* Eyebrow Accent - High-end light italic serif */}
           <div className="text-brand-gold font-serif italic text-base sm:text-lg tracking-wide mb-2 font-light">
-            The Art of Slow Brewing
+            Handcrafted Coffee
           </div>
 
           {/* Headline - Staggered lines with mid-label */}
           <h2 className="font-serif font-light text-brand-cream tracking-tight leading-[1.06] text-[30px] sm:text-[36px] md:text-[44px] lg:text-[50px] max-w-[500px] uppercase">
-            Handcrafted <span className="font-serif italic text-brand-gold font-normal">Coffee</span><br />
-            <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.35em] uppercase text-brand-cream/35 block my-2 sm:my-2.5 font-semibold select-none">
+            <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.35em] uppercase text-brand-cream/35 block mb-2 sm:mb-2.5 font-semibold select-none">
               — THE ARTISANAL APPROACH
             </span>
-            with a <span className="font-serif italic text-brand-gold font-normal">London Soul</span>
+            WITH A <span className="font-serif italic text-brand-gold font-normal">LONDON SOUL</span>
           </h2>
 
           {/* Minimal gold horizontal divider */}

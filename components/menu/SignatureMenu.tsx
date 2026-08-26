@@ -23,7 +23,7 @@ const products = [
     title: 'Caramel Latte',
     category: 'hot',
     price: '₹249',
-    description: 'Smooth espresso with creamy milk & rich caramel.',
+    subtext: 'Rich Espresso & Steamed Milk • 300 ml',
     image: '/images/menu_caramel_latte.jpg',
     isFavorite: true
   },
@@ -32,7 +32,7 @@ const products = [
     title: 'London Cappuccino',
     category: 'hot',
     price: '₹229',
-    description: 'Classic cappuccino with the perfect balance of foam.',
+    subtext: 'Double Shot & Velvet Foam • 250 ml',
     image: '/images/menu_london_cappuccino.jpg',
     isFavorite: false
   },
@@ -41,7 +41,7 @@ const products = [
     title: 'Iced Hazelnut Latte',
     category: 'iced',
     price: '₹269',
-    description: 'Chilled espresso with hazelnut & smooth milk over ice.',
+    subtext: 'Chilled Espresso & Hazelnut • 350 ml',
     image: '/images/menu_iced_hazelnut.jpg',
     isFavorite: false
   },
@@ -50,7 +50,7 @@ const products = [
     title: 'Mocha Frappe',
     category: 'frappe',
     price: '₹279',
-    description: 'Rich mocha blended with ice, topped with whipped cream.',
+    subtext: 'Blended Chocolate Mocha • 400 ml',
     image: '/images/menu_mocha_frappe.jpg',
     isFavorite: false
   },
@@ -59,7 +59,7 @@ const products = [
     title: 'English Breakfast Tea',
     category: 'tea',
     price: '₹149',
-    description: 'A robust & aromatic tea blend. Perfect to relax.',
+    subtext: 'Artisanal Black Tea Blend • 300 ml',
     image: '/images/menu_breakfast_tea.jpg',
     isFavorite: false
   }
@@ -124,10 +124,13 @@ export default function SignatureMenu() {
     <section
       id="menu"
       ref={containerRef}
-      className="relative w-[98vw] lg:w-[97.5vw] rounded-[28px] sm:rounded-[36px] bg-brand-cream border border-[#B88A24]/18 shadow-2xl overflow-hidden py-16 md:py-20 px-6 md:px-12 lg:px-16 flex flex-col items-center justify-center select-none"
+      className="relative w-[98vw] lg:w-[97.5vw] rounded-[28px] sm:rounded-[36px] bg-brand-cream/80 backdrop-blur-xl border border-[#B88A24]/18 shadow-2xl overflow-hidden py-16 md:py-20 px-6 md:px-12 lg:px-16 flex flex-col items-center justify-center select-none"
     >
+      {/* Background Contrast Softening Overlay */}
+      <div className="absolute inset-0 bg-brand-outer/5 backdrop-blur-[1px] pointer-events-none z-[1]" />
+
       {/* Background Watermark 1: London Skyline spanning the entire box */}
-      <div className="absolute inset-0 w-full h-full opacity-[0.05] mix-blend-multiply pointer-events-none select-none z-[0] overflow-hidden rounded-[28px] sm:rounded-[36px]">
+      <div className="absolute inset-0 w-full h-full opacity-[0.16] mix-blend-multiply pointer-events-none select-none z-[0] overflow-hidden rounded-[28px] sm:rounded-[36px]">
         <img
           src="/images/background.png"
           alt="London Skyline watermark"
@@ -136,7 +139,7 @@ export default function SignatureMenu() {
       </div>
 
       {/* Background Watermark 2: Coffee Beans on the right */}
-      <div className="absolute right-0 top-0 w-[30%] max-w-[280px] h-[340px] opacity-[0.25] pointer-events-none select-none z-[1] overflow-hidden rounded-tr-[28px] sm:rounded-tr-[36px]">
+      <div className="absolute right-0 top-0 w-[30%] max-w-[280px] h-[340px] opacity-[0.55] pointer-events-none select-none z-[1] overflow-hidden rounded-tr-[28px] sm:rounded-tr-[36px]">
         <img
           src="/images/bean.png"
           alt="Roasted Coffee Beans watermark"
@@ -156,7 +159,7 @@ export default function SignatureMenu() {
       </div>
 
       {/* 1. Header block */}
-      <div className="gsap-menu-header flex flex-col items-center text-center mb-10 relative z-10">
+      <div className="gsap-menu-header flex flex-col items-center text-center mb-3 relative z-10">
         {/* Eyebrow Script */}
         <div className="flex items-center justify-center gap-3 text-brand-gold font-script text-xl sm:text-2xl mb-1">
           <span className="w-8 sm:w-10 h-[1px] bg-brand-gold/30" />
@@ -171,22 +174,17 @@ export default function SignatureMenu() {
         </h2>
 
         {/* Small cup divider */}
-        <div className="flex items-center justify-center gap-3 text-brand-gold my-3.5">
+        <div className="flex items-center justify-center gap-3 text-brand-gold my-2">
           <span className="w-12 h-[1px] bg-brand-gold/30" />
           <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75H14.25M9.75 12H14.25M6 18H18M18 6v9a3 3 0 01-3 3H9a3 3 0 01-3-3V6h12z" />
           </svg>
           <span className="w-12 h-[1px] bg-brand-gold/30" />
         </div>
-
-        {/* Supporting description */}
-        <p className="text-brand-espresso/85 font-sans text-xs sm:text-[13px] max-w-[480px] leading-relaxed px-4">
-          From rich espresso to creamy indulgences, every drink is handcrafted with premium beans and passion.
-        </p>
       </div>
 
       {/* 2. Menu Category Tabs Buttons Row */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 relative z-10 w-full max-w-[800px] px-4">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-5 sm:mb-6 relative z-10 w-full max-w-[800px] px-4">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -207,15 +205,13 @@ export default function SignatureMenu() {
         {filteredProducts.map((item) => (
           <div
             key={item.index}
-            className="gsap-menu-card flex flex-col bg-brand-cream border border-[#B88A24]/20 rounded-[20px] overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.015] transition-all duration-500 ease-custom relative group"
+            className="gsap-menu-card flex flex-col bg-brand-cream/90 backdrop-blur-md border border-brand-gold/20 rounded-[20px] overflow-hidden shadow-[0_12px_24px_-6px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.22)] hover:-translate-y-1 transition-all duration-500 ease-custom relative group"
           >
-            {/* Customer Favorite Circle Badge overlay */}
+            {/* Top-Left Frosted-Glass Pill Badge */}
             {item.isFavorite && (
-              <div className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-brand-gold text-brand-cream flex flex-col items-center justify-center shadow-md select-none">
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current text-brand-cream">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                </svg>
-                <span className="text-[5px] font-bold tracking-widest uppercase text-center leading-[1] mt-0.5">FAVORITE</span>
+              <div className="absolute top-3 left-3 z-20 px-3 py-1 rounded-full bg-brand-espresso/70 backdrop-blur-md border border-brand-gold/30 text-brand-gold text-[10px] font-sans font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-md select-none">
+                <span className="text-brand-gold text-[11px]">★</span>
+                <span>Best Seller</span>
               </div>
             )}
 
@@ -229,25 +225,31 @@ export default function SignatureMenu() {
             </div>
 
             {/* Product Details */}
-            <div className="flex flex-col p-4 flex-grow justify-between">
+            <div className="flex flex-col p-4 flex-grow justify-between gap-3">
               <div>
-                <h3 className="font-serif text-[13px] sm:text-[14px] font-bold text-brand-espresso tracking-wide uppercase mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-brand-espresso/75 font-sans text-[11px] leading-relaxed font-light mb-4">
-                  {item.description}
-                </p>
+                {/* Fixed height title container for 100% consistent vertical alignment */}
+                <div className="min-h-[44px] flex flex-col justify-start">
+                  <h3 className="font-serif text-[15px] sm:text-base font-bold text-brand-espresso leading-snug tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-brand-espresso/60 font-sans text-[11px] leading-tight font-normal truncate mt-1">
+                    {item.subtext}
+                  </p>
+                </div>
               </div>
 
-              {/* Price and Add button */}
-              <div className="flex items-center justify-between w-full pt-1.5 border-t border-brand-espresso/5">
-                <span className="font-serif text-brand-gold text-base sm:text-lg font-light tracking-wide">
+              {/* Price and Solid Action Button */}
+              <div className="flex items-center justify-between w-full pt-2 border-t border-brand-espresso/10">
+                <span className="font-serif text-brand-gold text-base sm:text-lg font-semibold tracking-wide">
                   {item.price}
                 </span>
                 <button
-                  className="w-7.5 h-7.5 rounded-full border border-[#B88A24]/35 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-cream hover:border-transparent transition-all duration-300 focus:outline-none cursor-pointer shadow-sm active:scale-95"
+                  aria-label={`Add ${item.title} to order`}
+                  className="w-8 h-8 rounded-full bg-brand-espresso hover:bg-brand-brown text-brand-cream flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md focus:outline-none focus:ring-2 focus:ring-brand-gold cursor-pointer"
                 >
-                  <span className="text-sm font-semibold mt-[-2px]">+</span>
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
                 </button>
               </div>
             </div>

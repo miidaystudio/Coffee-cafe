@@ -7,7 +7,7 @@ import Footer from '@/components/footer/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-brand-outer flex flex-col items-center gap-6 lg:gap-8 py-4 lg:py-6 overflow-x-hidden">
+    <main className="min-h-screen bg-brand-outer flex flex-col items-center gap-6 lg:gap-8 pb-6 lg:pb-8 overflow-x-hidden">
       <LondonCoffeeHero />
       <CraftAndStory />
       <SignatureMenu />
