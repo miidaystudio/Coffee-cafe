@@ -3,13 +3,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-outer: #241A15;
+  --color-brand-outer: #0C1814;
   --color-brand-cream: #F4EFE6;
-  --color-brand-espresso: #2A1B16;
-  --color-brand-brown: #1D1410;
-  --color-brand-gold: #B88A24;
-  --color-brand-gold-bright: #DDAA33;
-  --color-brand-green: #163C30;
+  --color-brand-espresso: #132620;
+  --color-brand-brown: #08100E;
+  --color-brand-gold: #C59E3F;
+  --color-brand-gold-bright: #E9C46A;
+  --color-brand-green: #1E4235;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-script: 'Alex Brush', cursive;
@@ -19,8 +19,8 @@
 }
 
 :root {
-  --background: #241A15;
-  --foreground: #2A1B16;
+  --background: #0C1814;
+  --foreground: #F4EFE6;
 }
 
 body {

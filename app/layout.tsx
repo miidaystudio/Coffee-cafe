@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LenisProvider from "@/components/scroll/LenisProvider";
 
 export const metadata: Metadata = {
   title: "London Coffee — Premium Editorial Café Experience",
@@ -12,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col bg-brand-outer antialiased">
-        {children}
+    <html lang="en" className="h-full" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-brand-outer antialiased" suppressHydrationWarning>
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

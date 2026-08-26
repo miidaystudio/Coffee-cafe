@@ -11,21 +11,21 @@ export default function HeroNavigation() {
         {/* Left Side Links */}
         <div className="flex items-center gap-4 md:gap-7 flex-1 justify-end pr-10 md:pr-12 select-none">
           <a 
-            href="#" 
+            href="#story" 
             className="text-[9px] md:text-[10px] tracking-[0.2em] font-semibold text-brand-cream/80 hover:text-brand-gold transition-all duration-300 relative group uppercase"
           >
             ABOUT
             <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full" />
           </a>
           <a 
-            href="#" 
+            href="#menu" 
             className="text-[9px] md:text-[10px] tracking-[0.2em] font-semibold text-brand-cream/80 hover:text-brand-gold transition-all duration-300 relative group uppercase"
           >
             MENU
             <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full" />
           </a>
           <a 
-            href="#" 
+            href="#experience" 
             className="text-[9px] md:text-[10px] tracking-[0.2em] font-semibold text-brand-cream/80 hover:text-brand-gold transition-all duration-300 relative group uppercase"
           >
             EXPERIENCE
@@ -46,21 +46,21 @@ export default function HeroNavigation() {
         {/* Right Side Links */}
         <div className="flex items-center gap-4 md:gap-7 flex-1 justify-start pl-10 md:pl-12 select-none">
           <a 
-            href="#" 
+            href="#experience" 
             className="text-[9px] md:text-[10px] tracking-[0.2em] font-semibold text-brand-cream/80 hover:text-brand-gold transition-all duration-300 relative group uppercase"
           >
             GALLERY
             <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full" />
           </a>
           <a 
-            href="#" 
+            href="#contact" 
             className="text-[9px] md:text-[10px] tracking-[0.2em] font-semibold text-brand-cream/80 hover:text-brand-gold transition-all duration-300 relative group uppercase"
           >
             CONTACT
             <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full" />
           </a>
           <a 
-            href="#" 
+            href="#contact" 
             className="text-[9px] md:text-[10px] tracking-[0.15em] font-bold text-brand-gold hover:text-brand-gold-bright transition-colors duration-300 ml-1 uppercase"
           >
             CONNECT
